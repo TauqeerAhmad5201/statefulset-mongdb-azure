@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: azure-disk
+provisioner: disk.csi.azure.com  # This uses the CSI driver for Azure Disk
+parameters:
+  skuName: Standard_LRS  # Choose between Standard_LRS or Premium_LRS
+  kind: Managed
+allowVolumeExpansion: true  # Allows expanding PVC size
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete  # Or Retain if you want to keep volumes after deleting PVC
